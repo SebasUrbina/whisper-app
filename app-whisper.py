@@ -12,6 +12,7 @@ model_size = st.selectbox(
     'Selecciona el tamaño del modelo',
     ('tiny', 'base', 'small', 'medium', 'large'))
 
+# Model size
 if model_size:
     st.write(f'Has elegido el modelo **whisper-{model_size}**')
     if model_size == 'medium':
@@ -37,10 +38,13 @@ if model_size:
         # Cargar modelo
         if st.button('Transcribir audio'):
             # st.warning('Transcribiendo audio...', icon="⚠️")
+            # Transcribir
             with st.spinner('Transcribiendo audio'):
                 output = model.transcribe(audio_name)
                 transcripcion = output['text']
+                lang = output['language']
             st.success('Audio transcrito correctamente', icon="✅")
+            st.write(f'Lenguaje detectado: {lang}')
             output_text = st.text_area(
                 'Transcripción', transcripcion, height=150, label_visibility='hidden')
         os.remove(audio_name)
