@@ -22,6 +22,11 @@ if model_size:
 
     with st.spinner('Cargando modelo'):
         try:
+            # Si hay problemas de recursos
+            # @st.cache
+            # def load_model():
+            #     model = whisper.load_model(model_size)
+            # model = load_model()
             model = whisper.load_model(model_size)
         except:
             st.error(
@@ -40,7 +45,7 @@ if model_size:
             # st.warning('Transcribiendo audio...', icon="⚠️")
             # Transcribir
             with st.spinner('Transcribiendo audio'):
-                output = model.transcribe(audio_name)
+                output = model.transcribe("./"+audio_name)
                 transcripcion = output['text']
                 lang = output['language']
             st.success('Audio transcrito correctamente', icon="✅")
