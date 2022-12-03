@@ -39,23 +39,17 @@ if model_size:
         audio_name = audio_file.name
         with open(audio_name, 'wb') as f:
             f.write(audio_file.read())
-        st.write(audio_name)
+        st.write
         # Cargar modelo
         if st.button('Transcribir audio'):
             # st.warning('Transcribiendo audio...', icon="⚠️")
             # Transcribir
             with st.spinner('Transcribiendo audio'):
-                audio = whisper.load_audio(audio_name)
-                audio = whisper.pad_or_trim(audio)
-                mel = whisper.log_mel_spectrogram(audio).to(model.device)
-                _, probs = model.detect_language(mel)
-                st.write(max(probs, key=probs.get))
-
-            #     output = model.transcribe("./"+audio_name)
-            #     transcripcion = output['text']
-            #     lang = output['language']
-            # st.success('Audio transcrito correctamente', icon="✅")
-            # st.write(f'Lenguaje detectado: {lang}')
-            # output_text = st.text_area(
-            #     'Transcripción', transcripcion, height=150, label_visibility='hidden')
+                output = model.transcribe("./"+audio_name)
+                transcripcion = output['text']
+                lang = output['language']
+            st.success('Audio transcrito correctamente', icon="✅")
+            st.write(f'Lenguaje detectado: {lang}')
+            output_text = st.text_area(
+                'Transcripción', transcripcion, height=150, label_visibility='hidden')
         os.remove(audio_name)
