@@ -39,7 +39,6 @@ if model_size:
         audio_name = audio_file.name
         with open(audio_name, 'wb') as f:
             f.write(audio_file.read())
-        st.write
         # Cargar modelo
         if st.button('Transcribir audio'):
             # st.warning('Transcribiendo audio...', icon="⚠️")
