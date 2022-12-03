@@ -14,7 +14,7 @@ model_size = st.selectbox(
 
 # Model size
 if model_size:
-    st.write(f'Has elegido el modelo **whisper-{model_size}**')
+    st.write(f'Has elegido el modelo: **whisper-{model_size}**')
     if model_size == 'medium':
         st.warning('Debes tener tener al menos 5GB VRAM', icon="⚠️")
     elif model_size == 'large':
